@@ -1,0 +1,198 @@
+{
+  "sidebar": {
+    "teams": "Nhóm của tôi",
+    "notifications": "Thông báo",
+    "account": "Tài khoản",
+    "help": "Trợ giúp",
+    "signout": "Đăng xuất"
+  },
+  "common": {
+    "collapse": "Thu gọn",
+    "upload_image": "Tải hình ảnh lện",
+    "upload_warning": "Đang tải hình ảnh lên cloud, đừng rời khỏi màn hình chờ nhé <3 ",
+    "language": "Tiếng Việt",
+    "all": "Tất cả",
+    "doing": "Đang thực hiện",
+    "done": "Hoàn thành",
+    "default": "Mặc định",
+    "team": "Nhóm",
+    "authentication": {
+      "login": "Đăng nhập",
+      "logout": "Đăng xuất",
+      "signup": "Đăng ký"
+    },
+    "edit": "Chỉnh sửa",
+    "update": "Cập nhật",
+    "create": "Tạo mới",
+    "delete": "Xóa",
+    "cancel": "Hủy bỏ",
+    "upload": "Tải lên",
+    "joined_at": "Tham gia từ"
+  },
+  "notifications": {
+    "update_success": "Cập nhật thành công",
+    "create_success": "Tạo mới thành công",
+    "delete_success": "Xóa thành công"
+  },
+  "homepage": {
+    "titles": {
+      "what_is_reflect": "REFLECTION LÀ GÌ?",
+      "why_have_reflect": "TẠI SAO NÊN CÓ REFLECTION?",
+      "values_for_personality": "REFLECTION MANG LẠI GIÁ TRỊ GÌ CHO CÁ NHÂN?",
+      "values_for_group": "REFLECTION MANG LẠI GIÁ TRỊ GÌ CHO NHÓM?",
+      "in_short": "TÓM LẠI",
+      "what_role": "VAI TRÒ CỦA REFLECTION LÀ GÌ?"
+    },
+    "content": {
+      "retrospective": [
+        "wReflect là một trang web giúp bạn phản ánh những thành công và thách thức trong công việc.",
+        "Nó giúp bạn xác định những gì làm tốt và những gì cần cải thiện, cho phép tự đánh giá cả cá nhân và nhóm."
+      ],
+      "why": [
+        "Nhận thấy khó khăn trong việc tự đánh giá qua việc viết, hỏi và trả lời câu hỏi,",
+        "wReflect ra đời để làm cho quá trình này dễ dàng và tương tác hơn với các thành viên trong nhóm."
+      ],
+      "evaluate": {
+        "1": "Giúp các thành viên trong nhóm tương tác và theo dõi tiến độ công việc dễ dàng hơn.",
+        "2": "Công cụ này giúp phản ánh điểm mạnh và điểm yếu qua tự đánh giá và đánh giá nhóm.",
+        "3": "Theo dõi các nhiệm vụ hiện tại và kế hoạch để đảm bảo hoàn thành.",
+        "4": "Giám sát sức khỏe hợp tác trong nhóm và xác định các lĩnh vực cần cải thiện."
+      },
+      "tutorial": "Hướng dẫn"
+    }
+  },
+  "boards": {
+    "actions": {
+      "create": "Tạo bảng mới",
+      "edit": "Chỉnh sửa bảng",
+      "lock": "Khóa bảng",
+      "reset_votes": "Đặt lại tất cả phiếu bầu",
+      "show_bookmarks": "Hiển thị đánh dấu",
+      "meeting_notes": "Ghi chú cuộc họp"
+    },
+    "columns": {
+      "title": "Tiêu đề bảng",
+      "placeholder": "Tiêu đề bảng",
+      "phase": "Giai đoạn (Phản ánh, Nhóm, Bỏ phiếu, Thảo luận)",
+      "max_votes": "Số phiếu tối đa",
+      "public_desc": "Bất kỳ ai có liên kết đều có thể truy cập bảng này"
+    },
+    "phases": {
+      "reflect": "Phản ánh",
+      "group": "Nhóm",
+      "votes": "Bỏ phiếu",
+      "discuss": "Thảo luận"
+    },
+    "instructions": {
+      "intro": [
+        "Bạn đang nhìn lại những gì nhóm của bạn đã làm tốt hoặc chưa tốt trong năm qua.",
+        "Sử dụng phần này để xem xét tiến trình của nhóm với các tùy chọn tùy chỉnh."
+      ],
+      "group": [
+        "Lọc các ý kiến tương tự để kết hợp chúng thành một sự đồng thuận.",
+        "Kéo và thả các ý kiến để nhóm chúng lại với nhau."
+      ],
+      "votes": [
+        "Bỏ phiếu cho các ý tưởng ưu tiên của nhóm hoặc giúp nhóm phát triển.",
+        "Mỗi thành viên có giới hạn số phiếu do trưởng nhóm đặt ra."
+      ],
+      "discuss": [
+        "Thảo luận các ý kiến của thành viên để đạt được sự đồng thuận.",
+        "Thêm bình luận hoặc hành động để cải thiện giao tiếp trong nhóm."
+      ]
+    }
+  },
+  "teams": {
+    "new": "Nhóm mới",
+    "reflect": "Nhóm phản ánh",
+    "members": "Thành viên",
+    "settings": "Cài đặt",
+    "details": {
+      "name": "Tên nhóm",
+      "description": "Mô tả",
+      "status": "Trạng thái",
+      "private": "Riêng tư",
+      "public": "Công khai",
+      "members_count": "Số thành viên",
+      "boards_count": "Số bảng",
+      "created_since": "Nhóm được tạo từ"
+    }
+  },
+  "assessment": {
+    "manage": "Quản lý",
+    "analysis": "Phân tích",
+    "create": {
+      "title": "Tạo đánh giá",
+      "placeholder": "Nhập tên đánh giá",
+      "criteria_min": "Ít nhất 5 tiêu chí",
+      "criteria_max": "Tối đa 9 tiêu chí",
+      "message": "Vui lòng chọn tiêu chí hoặc xóa trường này"
+    },
+    "sort_options": {
+      "by_date": {
+        "asc": "Sắp xếp theo ngày tăng dần",
+        "desc": "Sắp xếp theo ngày giảm dần"
+      },
+      "by_name": {
+        "asc": "Sắp xếp theo tên tăng dần",
+        "desc": "Sắp xếp theo tên giảm dần"
+      }
+    },
+    "no_data": "Không có dữ liệu đánh giá"
+  },
+  "action_tracker": {
+    "title": "Trình theo dõi hành động",
+    "description": "Tạo mới các mục hành động và theo dõi tất cả hành động trong nhóm của bạn.",
+    "boards": "Bảng",
+    "assignees": "Người được giao",
+    "not_assigned": "Chưa được giao"
+  },
+  "members": {
+    "find": "Tìm thành viên",
+    "add": "Thêm thành viên vào nhóm",
+    "invite": {
+      "url": "Mời qua URL",
+      "email": "Mời qua Email"
+    },
+    "errors": {
+      "input_empty": "Dữ liệu nhập trống",
+      "invalid_email": "Dữ liệu nhập không phải là email hợp lệ!"
+    }
+  },
+  "user": {
+    "nickname": "Tên người dùng",
+    "gender": "Giới tính",
+    "status": "Trạng thái",
+    "introduction": "Giới thiệu",
+    "interests": "Sở thích",
+    "workplace": "Nơi làm việc"
+  },
+  "modal": {
+    "new_team": {
+      "title": "Tạo Nhóm Của Bạn",
+      "team_name": "Tên Nhóm",
+      "team_name_placeholder": "Nhập tên nhóm",
+      "team_name_validation": {
+        "min_length": "Tên nhóm phải ít nhất 5 ký tự",
+        "max_length": "Tên nhóm không được vượt quá 25 ký tự"
+      },
+      "description": "Mô Tả",
+      "description_placeholder": "Mô tả về nhóm",
+      "upload_label": "Tải ảnh nhóm",
+      "upload_button": "Tải lên",
+      "date_picker_label": "Chọn khoảng thời gian",
+      "select_label": "Chọn",
+      "select_options": {
+        "private": "Riêng Tư",
+        "public": "Công Khai"
+      },
+      "buttons": {
+        "cancel": "Hủy",
+        "create": "Tạo"
+      },
+      "validation": {
+        "date_range": "Vui lòng chọn khoảng thời gian hợp lệ"
+      }
+    }
+  }
+}

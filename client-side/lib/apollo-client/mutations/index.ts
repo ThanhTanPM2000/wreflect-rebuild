@@ -1,0 +1,12 @@
+export * as TeamMutations from './TeamMutations';
+export * as MemberMutations from './MemberMutations';
+export * as UserMutations from './UserMutation';
+export * as OpinionMutations from './OpinionMutations';
+export * as ColumnMutations from './ColumnMutations';
+export * as RemarkMutations from './RemarkMutations';
+export * as BoardMutations from './BoardMutations';
+export * as HealthCheckMutations from './HealthCheckMutation';
+export * as AssessmentMutations from './AssessmentMutations';
+export * as NotificationMutations from './NotificationMutations';
+export * as TemplateMutations from './TemplateMutation';
+export * as CriteriaMutations from './CriteriaMutations';

@@ -1,0 +1,198 @@
+{
+  "sidebar": {
+    "teams": "My Teams",
+    "notifications": "Notifications",
+    "account": "Account",
+    "help": "Help",
+    "signout": "Sign Out"
+  },
+  "common": {
+    "collapse": "Collapse",
+    "upload_image": "Upload Image",
+    "upload_warning": "Uploading Image to Cloud, please dont close the window...",
+    "language": "English",
+    "all": "All",
+    "doing": "Doing",
+    "done": "Done",
+    "default": "Default",
+    "team": "Team",
+    "authentication": {
+      "login": "Login",
+      "logout": "Logout",
+      "signup": "Sign up"
+    },
+    "edit": "Edit",
+    "update": "Update",
+    "create": "Create",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "upload": "Upload",
+    "joined_at": "Joined at"
+  },
+  "notifications": {
+    "update_success": "Updating Successful",
+    "create_success": "Creating Successful",
+    "delete_success": "Deleting Successful"
+  },
+  "homepage": {
+    "titles": {
+      "what_is_reflect": "WHAT IS REFLECTION?",
+      "why_have_reflect": "WHY HAVE REFLECTION?",
+      "values_for_personality": "REFLECTIVE VALUES FOR PERSONALITY?",
+      "values_for_group": "REFLECTIVE VALUES FOR GROUP?",
+      "in_short": "IN SHORT",
+      "what_role": "WHAT ROLE DOES REFLECTION?"
+    },
+    "content": {
+      "retrospective": [
+        "wReflect is a website that helps you reflect on the successes and challenges of your work.",
+        "It helps you identify what went well and what can be improved, enabling self-assessment for both you and your team."
+      ],
+      "why": [
+        "Realizing the difficulty of self-reflection through writing, asking, and answering questions,",
+        "wReflect was born to make this process easier and interactive with team members."
+      ],
+      "evaluate": {
+        "1": "Help team members interact and track work progress more easily.",
+        "2": "This tool helps reflect on strengths and weaknesses through self-assessment and team evaluations.",
+        "3": "Track current tasks and planned activities to ensure completion.",
+        "4": "Monitor the health of team collaboration and identify areas for improvement."
+      },
+      "tutorial": "Tutorial"
+    }
+  },
+  "boards": {
+    "actions": {
+      "create": "Create New Board",
+      "edit": "Edit Board",
+      "lock": "Lock Board",
+      "reset_votes": "Reset All Votes",
+      "show_bookmarks": "Show Bookmarks",
+      "meeting_notes": "Meeting Notes"
+    },
+    "columns": {
+      "title": "Board Title",
+      "placeholder": "Board Title",
+      "phase": "Phase (Reflect, Group, Votes, Discuss)",
+      "max_votes": "Max Votes",
+      "public_desc": "Anyone with the link can access this board"
+    },
+    "phases": {
+      "reflect": "Reflect",
+      "group": "Group",
+      "votes": "Votes",
+      "discuss": "Discuss"
+    },
+    "instructions": {
+      "intro": [
+        "You're now looking back at what your team did well or poorly over the past year.",
+        "Use this section to review team progress with customizable options."
+      ],
+      "group": [
+        "Filter similar opinions to combine them into a consensus.",
+        "Drag and drop opinions to group them together."
+      ],
+      "votes": [
+        "Vote for the ideas that are team priorities or help the team grow.",
+        "Each member has a voting limit set by the team leader."
+      ],
+      "discuss": [
+        "Discuss the opinions of team members to reach consensus.",
+        "Add comments or actions to drive better team communication."
+      ]
+    }
+  },
+  "teams": {
+    "new": "New Team",
+    "reflect": "Reflect Team",
+    "members": "Members",
+    "settings": "Settings",
+    "details": {
+      "name": "Team Name",
+      "description": "Description",
+      "status": "Status",
+      "private": "Private",
+      "public": "Public",
+      "members_count": "Number of Members",
+      "boards_count": "Number of Boards",
+      "created_since": "Team created since"
+    }
+  },
+  "assessment": {
+    "manage": "Manage",
+    "analysis": "Analysis",
+    "create": {
+      "title": "Create Assessment",
+      "placeholder": "Please input the name of the assessment",
+      "criteria_min": "At least 5 criteria",
+      "criteria_max": "At most 9 criteria",
+      "message": "Please select criteria or delete this field"
+    },
+    "sort_options": {
+      "by_date": {
+        "asc": "Sort By Ascending Date",
+        "desc": "Sort By Descending Date"
+      },
+      "by_name": {
+        "asc": "Sort By Ascending Name",
+        "desc": "Sort By Descending Name"
+      }
+    },
+    "no_data": "No Assessments Data"
+  },
+  "action_tracker": {
+    "title": "Action Tracker",
+    "description": "Create new action items & keep track of all actions in your teams.",
+    "boards": "Board(s)",
+    "assignees": "Assignee(s)",
+    "not_assigned": "Not Assigned"
+  },
+  "members": {
+    "find": "Find Members",
+    "add": "Add Team Members",
+    "invite": {
+      "url": "Invite via URL",
+      "email": "Invite via Email"
+    },
+    "errors": {
+      "input_empty": "Input is empty",
+      "invalid_email": "The input is not a valid email!"
+    }
+  },
+  "user": {
+    "nickname": "User Name",
+    "gender": "Gender",
+    "status": "Status",
+    "introduction": "Introduction",
+    "interests": "Interest(s)",
+    "workplace": "Workplace"
+  },
+  "modal": {
+    "new_team": {
+      "title": "Create Your Team",
+      "team_name": "Team Name",
+      "team_name_placeholder": "Input team name",
+      "team_name_validation": {
+        "min_length": "Team name must be at least 5 characters",
+        "max_length": "Team name must be no more than 25 characters"
+      },
+      "description": "Description",
+      "description_placeholder": "Description of the team",
+      "upload_label": "Upload Team's Picture",
+      "upload_button": "Upload",
+      "date_picker_label": "Pick range of date",
+      "select_label": "Select",
+      "select_options": {
+        "private": "Private",
+        "public": "Public"
+      },
+      "buttons": {
+        "cancel": "Cancel",
+        "create": "Create"
+      },
+      "validation": {
+        "date_range": "Please select a valid date range"
+      }
+    }
+  }
+}

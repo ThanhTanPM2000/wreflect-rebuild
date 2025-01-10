@@ -1,0 +1,17 @@
+export * as BoardFragment from './boardFragment';
+export * as ColumnFragment from './columnFragment';
+export * as OpinionFragment from './opinionFragments';
+export * as RemarkFragment from './remarkFragment';
+export * as MemberFragment from './memberFragment';
+export * as UserFragment from './userFragment';
+export * as AssessmentFragment from './assessmentFragment';
+export * as CriteriaFragment from './criteriaFragment';
+export * as EvaluationFragment from './evaluationFragment';
+export * as ResultFragment from './resultFragment';
+export * as AnswerOnCriteriaFragment from './answerOnCriteriaFragment';
+export * as NotificationFragment from './notificationFragment';
+export * as TemplateFragment from './templateFragment';
+export * as TemplateQuestionFragment from './templateQuestionFragment';
+export * as HealthCheckFragment from './healthCheckFragment';
+export * as MemberOnHealthCheckOnQuestionFragment from './memberOnHealthCheckOnQuestionFragment';
+export * as SessionFragment from './sessionFragment';
