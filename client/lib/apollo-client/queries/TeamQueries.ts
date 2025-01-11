@@ -1,6 +1,5 @@
 import { gql } from '@apollo/client';
 import { Team, TeamStatus } from '@/types';
-
 import { BOARD_FIELDS } from '../fragments/boardFragment';
 import { MEMBER_FIELDS } from '../fragments/memberFragment';
 import { TEAM_FIELDS } from '../fragments/teamFragment';
@@ -46,7 +45,13 @@ export type getTeamsVars = {
 const getTeams = gql`
   ${TEAM_FIELDS}
   query getTeams($status: String, $isGettingAll: Boolean, $search: String, $page: Int, $size: Int) {
-    getTeams(status: $status, isGettingAll: $isGettingAll, search: $search, page: $page, size: $size) {
+    getTeams(
+      status: $status
+      isGettingAll: $isGettingAll
+      search: $search
+      page: $page
+      size: $size
+    ) {
       data {
         ...TeamFields
       }

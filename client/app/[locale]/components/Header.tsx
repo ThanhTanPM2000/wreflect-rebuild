@@ -12,18 +12,18 @@ const Header = () => {
       <div className="flex justify-between items-center px-6 py-4">
         <Group>
           <Image
-            className="h-9 w-auto"
+            className="h-full w-auto object-cover"
             src="/images/shortLogo.png"
             alt="wReflect Logo"
             height={48}
             width={48}
           />
-          <h1 className="text-xl font-bold">WReflect</h1>
+          <h1 className="text-xl hidden md:block  font-bold">WReflect</h1>
         </Group>
 
         <div className="flex gap-2">
-          <LanguageIndicator />
           <LoginButton />
+          <LanguageIndicator />
         </div>
       </div>
     </header>

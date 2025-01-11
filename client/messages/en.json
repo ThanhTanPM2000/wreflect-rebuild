@@ -7,6 +7,8 @@
     "signout": "Sign Out"
   },
   "common": {
+    "search_text": "Please type text to search",
+    "search_label": "Search",
     "collapse": "Collapse",
     "upload_image": "Upload Image",
     "upload_warning": "Uploading Image to Cloud, please dont close the window...",

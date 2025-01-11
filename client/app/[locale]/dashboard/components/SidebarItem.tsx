@@ -15,7 +15,7 @@ const SidebarItem = ({ icon: Icon, label, isOpen, href }: Props) => {
 
   return (
     <Link
-      className={`${isActive && 'bg-violet-500'} mb-1 p-3 hover:cursor-pointer hover:bg-violet-400 rounded-md flex font-medium items-center gap-4 ${!isOpen && 'justify-center'}`}
+      className={`${isActive && 'bg-violet-500'} m-2 p-3 hover:cursor-pointer hover:bg-violet-400 rounded-md flex font-medium items-center gap-4 ${!isOpen && 'justify-center'}`}
       href={href}
     >
       <Icon size={20} />

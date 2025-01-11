@@ -21,7 +21,7 @@ const LoginButton = (props: Props) => {
   const router = useRouter();
   const [loginFunc, { loading }] = useMutation(login, {
     onCompleted: () => {
-      router.push('/dashboard');
+      router.push('/dashboard/teams');
     },
   });
   const searchParams = useSearchParams();
@@ -40,7 +40,7 @@ const LoginButton = (props: Props) => {
   };
 
   return (
-    <Button w={110} loading={loading} onClick={handleClickLogin}>
+    <Button loading={loading} onClick={handleClickLogin}>
       {t('common.authentication.login')}
     </Button>
   );

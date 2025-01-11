@@ -7,9 +7,9 @@ type Props = {
 
 const DashboardLayout = ({ children }: Props) => {
   return (
-    <div className="flex">
+    <div className="flex h-screen overflow-y-hidden">
       <Sidebar />
-      <div className="flex-grow p-3 bg-gray-100">{children}</div>
+      <div className="flex-grow min-w-[60rem] p-3 bg-gray-100  overflow-y-auto">{children}</div>
     </div>
   );
 };

@@ -17,6 +17,10 @@ export default withNextIntl(
           protocol: 'https',
           hostname: 'wreflect.s3.ap-southeast-2.amazonaws.com',
         },
+        {
+          protocol: 'http',
+          hostname: 'localhost',
+        },
       ],
     },
     reactStrictMode: false,

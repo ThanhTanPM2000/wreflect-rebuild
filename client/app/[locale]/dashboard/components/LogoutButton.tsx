@@ -16,14 +16,14 @@ const LogoutButton = ({ isCollapse }: Props) => {
   return (
     <>
       {isCollapse ? (
-        <Button onClick={clearCookie} color="black" fullWidth>
+        <Button className="h-11" onClick={clearCookie} color="black" fullWidth>
           <Avatar color="cyan" radius="xl">
             MK
           </Avatar>
           {t('common.authentication.logout')}
         </Button>
       ) : (
-        <ActionIcon onClick={clearCookie} color="black" style={{ width: '100%' }}>
+        <ActionIcon className="h-11 !w-full" onClick={clearCookie} color="black">
           <HiOutlineLogout />
         </ActionIcon>
       )}

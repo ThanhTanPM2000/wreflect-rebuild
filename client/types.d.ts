@@ -217,6 +217,12 @@ export type Criteria = {
   assessmentOnCriteriaList: Evaluation[];
 };
 
+export enum FilterTeamStatusType {
+  'ALL',
+  'DONE',
+  'DOING',
+}
+
 export type MemberStatus = 'PENDING_INVITATION' | 'JOINED';
 export type UserOnlineStatus = 'ONLINE' | 'OFFLINE';
 export type TeamStatus = 'ALL' | 'DOING' | 'DONE';

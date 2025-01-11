@@ -15,7 +15,7 @@ const HomePage = ({ params }: Props) => {
       <Header />
       <div className="home-page p-6">
         {/* Section 1 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center mt-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center mt-16">
           <div>
             <h1 className="text-4xl font-bold">{t('homepage.titles.what_is_reflect')}</h1>
             <p className="text-gray-600 mt-4">
@@ -23,7 +23,7 @@ const HomePage = ({ params }: Props) => {
             </p>
           </div>
           <Image
-            className="w-auto h-auto aspect-video"
+            className="w-auto h-full aspect-video object-cover"
             width={0}
             height={0}
             src="/images/teamwork-gif1.gif"
@@ -40,9 +40,10 @@ const HomePage = ({ params }: Props) => {
         </div>
 
         {/* Section 3 */}
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center mt-20"> */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center mt-16">
           <Image
-            className="w-auto h-auto aspect-video"
+            className="w-auto h-full aspect-video object-cover"
             width={0}
             height={0}
             src="/images/teamwork-gif2.gif"
@@ -76,7 +77,7 @@ const HomePage = ({ params }: Props) => {
           <Image
             src="/images/teamwork-gif3.gif"
             alt="Teamwork GIF 3"
-            className="w-auto h-auto aspect-video"
+            className="w-auto h-full aspect-video object-cover"
             width={0}
             height={0}
           />

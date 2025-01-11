@@ -13,8 +13,8 @@ import { theme } from '@/theme';
 import './global.css';
 
 export const metadata = {
-  title: 'Mantine Next.js template',
-  description: 'I am using Mantine with Next.js!',
+  title: 'wReflect',
+  description: 'We reflect on our work',
 };
 
 type Props = {
@@ -41,7 +41,7 @@ export default async function RootLayout({ children, params }: Props) {
     <html lang={locale} {...mantineHtmlProps}>
       <head>
         <ColorSchemeScript />
-        <link rel="shortcut icon" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/images/shortLogo.png" />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"

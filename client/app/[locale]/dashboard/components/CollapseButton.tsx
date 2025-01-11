@@ -1,7 +1,9 @@
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { HiMenu } from 'react-icons/hi';
 import { ActionIcon, Button } from '@mantine/core';
+import { usePathname } from '@/i18n/routing';
 
 type Props = {
   isCollapse: boolean;
@@ -10,19 +12,24 @@ type Props = {
 
 const CollapseButton = ({ isCollapse, onCollapse }: Props) => {
   const t = useTranslations();
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleToggleCollapse = () => {
+    router.push(`${pathname}?isCollapse=${!isCollapse}`, {
+      scroll: false,
+    });
     onCollapse();
   };
 
   return (
     <>
       {isCollapse ? (
-        <Button onClick={handleToggleCollapse} color="gray" fullWidth>
+        <Button className="h-11" onClick={handleToggleCollapse} color="gray" fullWidth>
           {t('common.collapse')}
         </Button>
       ) : (
-        <ActionIcon onClick={handleToggleCollapse} color="gray" style={{ width: '100%' }}>
+        <ActionIcon className="h-11 !w-full" onClick={handleToggleCollapse} color="gray">
           <HiMenu />
         </ActionIcon>
       )}

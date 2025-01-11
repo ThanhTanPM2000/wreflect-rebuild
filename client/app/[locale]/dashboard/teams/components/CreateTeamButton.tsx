@@ -19,7 +19,11 @@ const CreateTeamButton = (props: Props) => {
   };
   return (
     <>
-      <Button onClick={handleClick} leftSection={<HiOutlinePlusCircle size={20} />}>
+      <Button
+        className="!min-w-fit"
+        onClick={handleClick}
+        leftSection={<HiOutlinePlusCircle size={20} />}
+      >
         {t('teams.new')}
       </Button>
       <NewTeamModal isVisible={isOpened} setIsVisible={setIsOpened} />

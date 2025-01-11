@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { HiBell, HiOutlineLogout, HiUser, HiUserGroup } from 'react-icons/hi';
 import { Avatar, Burger, Button } from '@mantine/core';
@@ -14,27 +15,30 @@ type Props = {};
 
 const Sidebar = (props: Props) => {
   const locale = useLocale();
-  const [isCollapse, setIsCollapse] = useState(true);
+  const searchParams = useSearchParams();
+  const [isCollapse, setIsCollapse] = useState(
+    searchParams.get('isCollapse') === 'true' ? true : false
+  );
   const t = useTranslations();
 
   return (
     <div
-      className={`h-screen bg-primary text-white ${
-        isCollapse ? 'w-52' : 'w-20'
+      className={`h-screen flex-none bg-primary text-white ${
+        isCollapse ? 'w-60' : 'w-20'
       } transition-all duration-400 flex flex-col`}
     >
       {/* Top Section */}
-      <div className="flex items-center m-2  justify-center  bg-white p-3 rounded-xl">
+      <div className="flex gap-1 h-12 items-center m-2  justify-center  bg-white p-3 rounded-xl">
         <Image
-          className="h-9 mr-2 w-auto"
+          className="h-full w-auto object-cover"
           src="/images/shortLogo.png"
           alt="wReflect Logo"
-          height={48}
-          width={48}
+          height={100}
+          width={100}
         />
-        {isCollapse && (
-          <span className="text-2xl font-extrabold text-center text-black">wReflect</span>
-        )}
+        <span className={`text-2xl font-extrabold text-black  ${!isCollapse && 'hidden'}`}>
+          wReflect
+        </span>
       </div>
 
       <div className="flex flex-grow flex-col justify-between">
@@ -61,14 +65,11 @@ const Sidebar = (props: Props) => {
             />
           </ul>
         </nav>
-        <div className="p-4">
-          <ChangeLanguageButton isCollapsed={isCollapse} />
-          <CollapseButton isCollapse={isCollapse} onCollapse={() => setIsCollapse(!isCollapse)} />
-        </div>
       </div>
 
-      {/* Logout Button */}
-      <div className="p-4">
+      <div className="flex flex-col gap-2 p-4">
+        <ChangeLanguageButton isCollapsed={isCollapse} />
+        <CollapseButton isCollapse={isCollapse} onCollapse={() => setIsCollapse(!isCollapse)} />
         <LogoutButton isCollapse={isCollapse} />
       </div>
     </div>

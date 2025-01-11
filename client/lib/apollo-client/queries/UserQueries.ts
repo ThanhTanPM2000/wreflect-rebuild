@@ -1,6 +1,5 @@
-import { User } from '@/types';
-import { PageHeader } from 'antd';
 import { gql } from '@apollo/client';
+import { User } from '@/types';
 import { USER_FIELDS } from '../fragments/userFragment';
 
 const login = gql`

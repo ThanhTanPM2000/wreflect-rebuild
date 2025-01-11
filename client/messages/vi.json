@@ -7,6 +7,8 @@
     "signout": "Đăng xuất"
   },
   "common": {
+    "search_text": "Tìm kiếm ở đây",
+    "search_label": "Tìm kiếm",
     "collapse": "Thu gọn",
     "upload_image": "Tải hình ảnh lện",
     "upload_warning": "Đang tải hình ảnh lên cloud, đừng rời khỏi màn hình chờ nhé <3 ",
