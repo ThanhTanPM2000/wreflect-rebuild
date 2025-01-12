@@ -1,6 +1,21 @@
-import { TeamStatus } from '.prisma/client';
+import { Gender, TeamStatus } from '.prisma/client';
 import { Request } from 'express';
 import { User } from '@prisma/client';
+
+
+export type DecodedJwt = {
+  userId: string;
+  email: string;
+  email_verified: boolean;
+  name: string;
+  nickname: string;
+  sub: string;
+  picture: string;
+  gender: Gender;
+  introduction: string;
+  interests: string;
+  talents: string;
+};
 
 export type SanitizedUser = {
   id: number;

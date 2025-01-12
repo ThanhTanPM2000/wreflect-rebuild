@@ -79,8 +79,20 @@ export type getTeamsOfUserVars = {
 
 export const getTeamsOfUser = gql`
   ${TEAM_FIELDS}
-  query getTeamsOfUser($isGettingAll: Boolean, $search: String, $page: Int, $size: Int) {
-    getTeamsOfUser(isGettingAll: $isGettingAll, search: $search, page: $page, size: $size) {
+  query getTeamsOfUser(
+    $isGettingAll: Boolean
+    $search: String
+    $page: Int
+    $size: Int
+    $status: String
+  ) {
+    getTeamsOfUser(
+      isGettingAll: $isGettingAll
+      search: $search
+      page: $page
+      size: $size
+      status: $status
+    ) {
       data {
         ...TeamFields
       }

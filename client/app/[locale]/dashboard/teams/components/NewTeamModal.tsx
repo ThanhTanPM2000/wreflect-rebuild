@@ -22,9 +22,10 @@ import Overlay from './OverlayProgress';
 type Props = {
   isVisible: boolean;
   setIsVisible: (val: boolean) => void;
+  onRefecth: () => void;
 };
 
-const NewTeamModal = ({ isVisible, setIsVisible }: Props) => {
+const NewTeamModal = ({ isVisible, setIsVisible, onRefecth }: Props) => {
   const t = useTranslations();
   const [createTeamFunc] = useMutation(createTeam);
   const [getPresignedUrlFunc] = useMutation(getPresignedUrl);
@@ -91,6 +92,7 @@ const NewTeamModal = ({ isVisible, setIsVisible }: Props) => {
           setUploadedImage(null);
           setUploadProgress(0);
           setIsVisible(false);
+          onRefecth();
         } else {
           console.error('Upload failed');
         }

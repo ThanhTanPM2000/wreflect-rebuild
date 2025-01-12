@@ -8,9 +8,11 @@ import NewTeamModal from './NewTeamModal';
 
 import '@mantine/dates/styles.css';
 
-type Props = {};
+type Props = {
+  onRefetch: () => void;
+};
 
-const CreateTeamButton = (props: Props) => {
+const CreateTeamButton = ({ onRefetch }: Props) => {
   const [isOpened, setIsOpened] = useState(false);
   const t = useTranslations();
 
@@ -26,7 +28,7 @@ const CreateTeamButton = (props: Props) => {
       >
         {t('teams.new')}
       </Button>
-      <NewTeamModal isVisible={isOpened} setIsVisible={setIsOpened} />
+      <NewTeamModal isVisible={isOpened} setIsVisible={setIsOpened} onRefecth={onRefetch} />
     </>
   );
 };

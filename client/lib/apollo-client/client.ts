@@ -1,4 +1,4 @@
-import { ApolloLink, from, split } from '@apollo/client';
+import { ApolloLink, from, HttpLink, split } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
 import { getMainDefinition } from '@apollo/client/utilities';
 import {
@@ -7,6 +7,11 @@ import {
   registerApolloClient,
 } from '@apollo/experimental-nextjs-app-support';
 import createUploadLink from 'apollo-upload-client/createUploadLink.mjs';
+
+const httpLink = new HttpLink({
+  uri: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/graphql`,
+  credentials: 'include',
+});
 
 const uploadLink = createUploadLink({
   uri: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/graphql`,
@@ -19,7 +24,7 @@ const uploadLink = createUploadLink({
 const splitLink = split(({ query }) => {
   const definition = getMainDefinition(query);
   return definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
-}, uploadLink);
+}, httpLink);
 
 const errorLink = onError(({ graphQLErrors }) => {
   console.log('there is an error');
@@ -28,6 +33,6 @@ const errorLink = onError(({ graphQLErrors }) => {
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
   return new ApolloClient({
     cache: new InMemoryCache(),
-    link: from([errorLink, uploadLink as unknown as ApolloLink]),
+    link: from([errorLink, splitLink]),
   });
 });

@@ -9,9 +9,9 @@ type Props = {
 
 const TeamList = ({ teams }: Props) => {
   return (
-    <Grid>
+    <Grid gutter={{ base: 5, xs: 'md', md: 'xl', xl: 50 }}>
       {teams.map((team) => (
-        <Grid.Col span={2} key={team.id}>
+        <Grid.Col span={4} key={team.id}>
           <TeamItem team={team} />
         </Grid.Col>
       ))}

@@ -76,8 +76,8 @@ const resolvers = {
     },
     getTeamsOfUser: async (_, args, { req }: { req: RequestWithUserInfo }) => {
       const { id: meId } = req?.user;
-      const { isGettingAll, search, page, size } = args;
-      const ownedTeams = await team.getTeamsOfUser(meId, !!isGettingAll, page, size, search);
+      const { isGettingAll, search, page, size, status } = args;
+      const ownedTeams = await team.getTeamsOfUser(meId, !!isGettingAll, page, size, search, status);
       return ownedTeams;
     },
     team: async (_, args, { req }: { req: RequestWithUserInfo }) => {
@@ -191,26 +191,20 @@ const resolvers = {
   },
   Mutation: {
     loginTemplate: async (_, args: login, { req, res }: { req: RequestWithUserInfo; res: Response }) => {
-      const {
-        email,
-        userId,
-        email_verified: isEmailVerified,
-        name,
-        nickname,
-        picture,
-        sub,
-      } = await auth0.exchangeCodeForToken(args.code);
-      if (!isEmailVerified) {
-        return { email, requiresEmailVerification: !isEmailVerified, picture, sub };
-      }
+      const data = await auth0.exchangeCodeForToken(args.code);
+      // if (!isEmailVerified) {
+      //   return { email, requiresEmailVerification: !isEmailVerified, picture, sub };
+      // }
 
-      const myUser = await user.findOrCreateUserByEmail(email, picture, userId, name, nickname, sub);
+      const myUser = await user.findOrCreateUserByEmail(data);
       const mySession = await session.createSession(myUser.id, config.SESSION_DURATION_MINUTES);
 
       const oneDayInMilliseconds = config.SESSION_DURATION_MINUTES * 60 * 1000;
-      const token = jwt.sign({ email, token: mySession.token }, 'wReflect', { expiresIn: oneDayInMilliseconds });
+      const token = jwt.sign({ email: data.email, token: mySession.token }, 'wReflect', {
+        expiresIn: oneDayInMilliseconds,
+      });
       setCookie('wReflect', token, oneDayInMilliseconds, res);
-      return { email };
+      return { email: data.email };
     },
     createHealthCheckTemplate: async (
       _,

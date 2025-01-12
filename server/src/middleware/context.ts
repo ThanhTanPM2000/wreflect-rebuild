@@ -11,7 +11,6 @@ export const createContext = async ({ req, res }) => {
   }
 
   const token = req?.cookies?.wReflect;
-  console.log({ token });
 
   let sanitizedUser: { email: string; id: string; isAdmin: boolean };
   try {

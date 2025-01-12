@@ -1,6 +1,5 @@
 'use client';
 
-// ^ this file needs the "use client" pragma
 import { redirect } from 'next/navigation';
 import { ApolloLink, HttpLink } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
@@ -10,10 +9,14 @@ import {
   InMemoryCache,
   SSRMultipartLink,
 } from '@apollo/experimental-nextjs-app-support';
-import createUploadLink from 'apollo-upload-client/createUploadLink.mjs';
 
 // have a function to create a client for you
 function makeClient() {
+  const httpLink = new HttpLink({
+    uri: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/graphql`,
+    credentials: 'include',
+  });
+
   const errorLink = onError(({ graphQLErrors, networkError }) => {
     if (graphQLErrors) {
       graphQLErrors.forEach(({ extensions }) => {
@@ -24,13 +27,13 @@ function makeClient() {
     }
   });
 
-  const uploadLink = createUploadLink({
-    uri: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/graphql`,
-    headers: {
-      'Apollo-Require-Preflight': 'true',
-    },
-    credentials: 'include',
-  });
+  // const uploadLink = createUploadLink({
+  //   uri: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/graphql`,
+  //   headers: {
+  //     'Apollo-Require-Preflight': 'true',
+  //   },
+  //   credentials: 'include',
+  // });
 
   return new ApolloClient({
     cache: new InMemoryCache(),
@@ -43,7 +46,7 @@ function makeClient() {
           ]
         : []),
       errorLink,
-      uploadLink,
+      httpLink,
     ]),
   });
 }

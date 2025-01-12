@@ -111,7 +111,14 @@ export const getTeams = async (
   };
 };
 
-export const getTeamsOfUser = async (meId: string, isGettingAll = false, page = 1, size = 8, search = '') => {
+export const getTeamsOfUser = async (
+  meId: string,
+  isGettingAll = false,
+  page = 1,
+  size = 8,
+  search = '',
+  status = 'ALL',
+) => {
   const myTeams = await prisma.team.findMany({
     where: {
       members: {
@@ -122,6 +129,9 @@ export const getTeamsOfUser = async (meId: string, isGettingAll = false, page = 
       name: {
         contains: search,
         mode: 'insensitive',
+      },
+      status: {
+        equals: status.trim() == 'ALL' ? undefined : (status as TeamStatus),
       },
     },
     ...(!isGettingAll && { skip: (page - 1) * size }),
@@ -290,7 +300,7 @@ export const getTeam = async (meId: string, isAdmin: boolean, teamId: string) =>
 };
 
 export const createTeam = async (req: RequestWithUserInfo, data: createTeamArgs) => {
-  const { id: meId } = req.user;
+  const { id } = req.user;
 
   const startDate = data.startDate ? new Date(data.startDate) : new Date();
   const endDate = data.endDate ? new Date(data.endDate) : new Date();
@@ -305,7 +315,7 @@ export const createTeam = async (req: RequestWithUserInfo, data: createTeamArgs)
       endDate,
       boards: {
         create: {
-          createdBy: meId,
+          createdBy: id,
           title: 'Default Board',
           columns: {
             createMany: {
@@ -343,7 +353,7 @@ export const createTeam = async (req: RequestWithUserInfo, data: createTeamArgs)
       members: {
         create: {
           isSuperOwner: true,
-          userId: meId,
+          userId: id,
         },
       },
     },

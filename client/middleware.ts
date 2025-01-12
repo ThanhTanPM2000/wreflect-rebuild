@@ -1,20 +1,31 @@
 import { cookies } from 'next/headers';
-import type { NextRequest } from 'next/server';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { jwtVerify } from 'jose';
 import createMiddleware from 'next-intl/middleware';
-import { routing } from './i18n/routing';
+import { routing } from '@/i18n/routing';
+
+// import { auth0 } from '@/lib/auth0';
 
 const intlMiddleware = createMiddleware(routing);
 
-const protectedRoutes = [`/en/dashboard`, `/vi/dashboard`];
+const protectedRoutes: string[] = [`/en/dashboard`, `/vi/dashboard`];
 const publicRoutes = [`/en`, `/vi`, '/'];
 
 export default async function middleware(request: NextRequest) {
-  const path = request.nextUrl.pathname;
+  const path: string = request.nextUrl.pathname;
+  //
+  // const authResponse = await auth0.middleware(request);
+  //
+  // // if path starts with /auth, let the auth middleware handle it
+  // if (request.nextUrl.pathname.startsWith('/auth')) {
+  //   return authResponse;
+  // }
 
   const isProtectedRoute = protectedRoutes.some((route) => path.startsWith(route));
   const isPublicRoute = publicRoutes.includes(path);
+
+  // const session = await auth0.getSession(request as any);
+  // console.log({ session });
 
   const tokenJwt = (await cookies()).get('wReflect')?.value || '';
 
@@ -23,9 +34,11 @@ export default async function middleware(request: NextRequest) {
     await jwtVerify(tokenJwt, secretKey);
 
     if (isPublicRoute) {
-      console.log('redirect');
-      const dashboardUrl = new URL('/dashboard', request.url);
+      const dashboardUrl = new URL('/dashboard/teams', request.url);
       return NextResponse.redirect(dashboardUrl);
+    } else {
+      // await = getClient().query()
+      console.log('');
     }
   } catch (error) {
     if (isProtectedRoute) {

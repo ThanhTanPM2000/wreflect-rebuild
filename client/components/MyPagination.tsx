@@ -18,7 +18,7 @@ const MyPagination = ({ total }: Props) => {
   const pageString = searchParams.get('page');
   const currentPage = getValidPageParams(pageString);
   const sizeString = searchParams.get('size');
-  const currentSize = getValidSizeParams(sizeString);
+  const currentSize = getValidSizeParams(sizeString, 6);
   const router = useRouter();
 
   const handlePageChange = (value: number) => {
@@ -36,7 +36,6 @@ const MyPagination = ({ total }: Props) => {
       hideWithOnePage
       onChange={handlePageChange}
       total={currentSize ? Math.ceil(total / currentSize) : 1}
-      mt="sm"
     />
   );
 };

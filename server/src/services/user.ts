@@ -8,15 +8,19 @@ import { pubsub } from '../pubSub';
 import { banUserArgs } from '../apollo/TypeDefs/userTypeDefs';
 import { P } from 'pino';
 import { user } from '.';
+import { DecodedJwt } from '../types';
+import { sub } from 'date-fns';
 
-export const findOrCreateUserByEmail = async (
-  email: string,
-  picture: string,
-  userId: string,
-  name: string,
-  nickname: string,
-  sub: string,
-) => {
+export const findOrCreateUserByEmail = async ({
+  email,
+  picture,
+  interests,
+  introduction,
+  talents,
+  nickname,
+  gender,
+  sub,
+}: DecodedJwt) => {
   try {
     const findUser = await prisma.user.findUnique({
       where: {
@@ -32,7 +36,6 @@ export const findOrCreateUserByEmail = async (
     const updateData =
       findUser && findUser.nickname === 'UnRegistered' && findUser.members[0].isPendingInvitation
         ? {
-            sub,
             members: {
               updateMany: {
                 where: {
@@ -49,7 +52,6 @@ export const findOrCreateUserByEmail = async (
     const user = await prisma.user.upsert({
       where: { email },
       update: {
-        email,
         userStatus: 'ONLINE',
         ...updateData,
       },
@@ -58,7 +60,11 @@ export const findOrCreateUserByEmail = async (
         sub,
         userStatus: 'ONLINE',
         picture,
+        gender: gender || 'UNSPECIFIED',
         nickname,
+        interests,
+        talents,
+        introduction,
         skillValues: {},
       },
     });

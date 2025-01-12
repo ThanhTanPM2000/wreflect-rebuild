@@ -22,12 +22,12 @@ export const getValidPageParams = (page: string | null): number => {
   return isNull(parsedPage) || isNaN(parsedPage) || parsedPage < 1 ? 1 : parsedPage;
 };
 
-export const getValidSizeParams = (size: string | null): number => {
+export const getValidSizeParams = (size: string | null, defaultSize = 10): number => {
   let parsedSize = null;
   if (size) {
     parsedSize = parseInt(size, 10);
   }
-  return isNull(parsedSize) || isNaN(parsedSize) || parsedSize < 1 ? 10 : parsedSize;
+  return isNull(parsedSize) || isNaN(parsedSize) || parsedSize < 1 ? defaultSize : parsedSize;
 };
 
 export const getValidSearchParam = (search: string | null): string => {

@@ -97,7 +97,7 @@ const templatesData = [
         },
       },
     });
-    logger.info('createing criteria data susscussfully', creatingTemplateHealthCheck);
+    logger.info('creating template health data susscussfully', creatingTemplateHealthCheck);
   } catch (error) {
     logger.error('error occur: ', error);
   }

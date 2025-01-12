@@ -10,7 +10,7 @@ import { routing } from '@/i18n/routing';
 import { ApolloWrapper } from '@/lib/apollo-client/apollo-wrapper';
 import { theme } from '@/theme';
 
-import './global.css';
+import '@/app/global.css';
 
 export const metadata = {
   title: 'wReflect',
@@ -48,11 +48,11 @@ export default async function RootLayout({ children, params }: Props) {
         />
       </head>
       <body className={baloo_bhai.className}>
-        <NextIntlClientProvider messages={messages}>
-          <MantineProvider theme={theme}>
+        <MantineProvider theme={theme}>
+          <NextIntlClientProvider messages={messages}>
             <ApolloWrapper>{children}</ApolloWrapper>
-          </MantineProvider>
-        </NextIntlClientProvider>
+          </NextIntlClientProvider>
+        </MantineProvider>
       </body>
     </html>
   );
