@@ -6,7 +6,10 @@ import { GraphQLError } from 'graphql';
 export const createContext = async ({ req, res }) => {
   const { operationName } = req.body;
 
-  if (operationName === 'loginTemplate') {
+  // if (operationName === 'loginTemplate') {
+  //   return { req, res };
+  // }
+  if (req?.body?.query.startsWith('query IntrospectionQuery') || operationName === 'loginTemplate') {
     return { req, res };
   }
 

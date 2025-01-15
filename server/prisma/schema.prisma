@@ -92,20 +92,47 @@ enum AssessmentStatus {
 }
 
 model Team {
-  id           String                @id @default(uuid())
-  name         String
-  createdAt    DateTime              @default(now())
-  startDate    DateTime
-  endDate      DateTime
-  picture      String
-  isPublic     Boolean               @default(true)
-  description  String?
-  status       TeamStatus            @default(DOING)
-  members      Member[]
-  boards       Board[]
-  healthChecks HealthCheck[]
-  teamTemplate HealthCheckTemplate[]
-  assessments  Assessment[]
+  id             String                @id @default(uuid())
+  name           String
+  createdAt      DateTime              @default(now())
+  startDate      DateTime
+  endDate        DateTime
+  picture        String
+  isPublic       Boolean               @default(true)
+  description    String?
+  defaultBoardId String?               @unique
+  defaultBoard   Board?                @relation("DefaultBoard", fields: [defaultBoardId], references: [id])
+  status         TeamStatus            @default(DOING)
+  members        Member[]
+  boards         Board[]               @relation("TeamBoards")
+  healthChecks   HealthCheck[]
+  teamTemplate   HealthCheckTemplate[]
+  assessments    Assessment[]
+}
+
+model Board {
+  id              String       @id @default(uuid())
+  teamId          String
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  createdBy       String
+  isPublic        Boolean      @default(true)
+  isLocked        Boolean      @default(false)
+  currentColumnId String?
+  disableDownVote Boolean      @default(false)
+  disableUpVote   Boolean      @default(false)
+  isAnonymous     Boolean      @default(false)
+  votesLimit      Int          @default(25)
+  meetingNote     String       @default("My meeting note...")
+  title           String
+  timerInProgress Boolean      @default(false)
+  type            BoardType    @default(PHASE)
+  currentPhase    PhaseType    @default(REFLECT)
+  endTime         DateTime?
+  team            Team         @relation("TeamBoards", fields: [teamId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  teamDefault     Team?        @relation("DefaultBoard")
+  columns         Column[]
+  healthCheck     HealthCheck?
 }
 
 model HealthCheckTemplate {
@@ -132,30 +159,6 @@ model TemplateQuestion {
   memberOnHealthCheck MemberOnHealthCheckOnQuestion[]
 
   @@unique([title, templateId])
-}
-
-model Board {
-  id              String       @id @default(uuid())
-  teamId          String
-  createdAt       DateTime     @default(now())
-  updatedAt       DateTime     @updatedAt
-  createdBy       String
-  isPublic        Boolean      @default(true)
-  isLocked        Boolean      @default(false)
-  currentColumnId String?
-  disableDownVote Boolean      @default(false)
-  disableUpVote   Boolean      @default(false)
-  isAnonymous     Boolean      @default(false)
-  votesLimit      Int          @default(25)
-  meetingNote     String       @default("My meeting note...")
-  title           String
-  timerInProgress Boolean      @default(false)
-  type            BoardType    @default(PHASE)
-  currentPhase    PhaseType    @default(REFLECT)
-  endTime         DateTime?
-  team            Team         @relation(fields: [teamId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  columns         Column[]
-  healthCheck     HealthCheck?
 }
 
 model HealthCheck {

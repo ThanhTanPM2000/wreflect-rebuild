@@ -14,7 +14,7 @@ import { User } from '@prisma/client';
 
 export const getTeams = async (
   isAdmin: boolean,
-  isGettingAll = false,
+  isGettingAll = true,
   page = 1,
   size = 8,
   search = '',
@@ -305,7 +305,7 @@ export const createTeam = async (req: RequestWithUserInfo, data: createTeamArgs)
   const startDate = data.startDate ? new Date(data.startDate) : new Date();
   const endDate = data.endDate ? new Date(data.endDate) : new Date();
 
-  const team = await prisma.team.create({
+  let team = await prisma.team.create({
     data: {
       picture: data?.picture?.trim(),
       name: data?.name?.trim(),
@@ -356,6 +356,61 @@ export const createTeam = async (req: RequestWithUserInfo, data: createTeamArgs)
           userId: id,
         },
       },
+    },
+    include: {
+      members: {
+        orderBy: [
+          {
+            isSuperOwner: 'desc',
+          },
+          {
+            isOwner: 'desc',
+          },
+          {
+            joinedAt: 'desc',
+          },
+        ],
+        include: {
+          user: true,
+        },
+      },
+      boards: {
+        include: {
+          columns: {
+            include: {
+              opinions: {
+                include: {
+                  remarks: {
+                    include: {
+                      author: {
+                        include: {
+                          user: true,
+                        },
+                      },
+                    },
+                  },
+                  author: {
+                    include: {
+                      user: true,
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+
+  const defaultBoard = team?.boards[0];
+
+  team = await prisma.team.update({
+    where: {
+      id: team.id,
+    },
+    data: {
+      defaultBoardId: defaultBoard.id,
     },
     include: {
       members: {

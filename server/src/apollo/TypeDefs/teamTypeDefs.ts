@@ -11,6 +11,7 @@ const typeDefs = gql`
     isPublic: Boolean
     description: String
     status: TeamStatus
+    defaultBoardId: String
     members: [Member]
     boards(isGettingAll: Boolean, offSet: Int, limit: Int): [Board]
     healthCheck: [HealthCheck]

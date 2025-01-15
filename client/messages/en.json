@@ -7,6 +7,7 @@
     "signout": "Sign Out"
   },
   "common": {
+    "days": "Day(s)",
     "search_text": "Please type text to search",
     "search_label": "Search",
     "collapse": "Collapse",
@@ -106,7 +107,11 @@
   },
   "teams": {
     "new": "New Team",
-    "reflect": "Reflect Team",
+    "teamReflection": "Team Reflection",
+    "selfReflection": "Self Reflection",
+    "actionTracker": "Action Tracker",
+    "healthCheck": "Health Check",
+    "boards": "Boards",
     "members": "Members",
     "settings": "Settings",
     "details": {

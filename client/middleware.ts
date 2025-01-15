@@ -13,19 +13,18 @@ const publicRoutes = [`/en`, `/vi`, '/'];
 
 export default async function middleware(request: NextRequest) {
   const path: string = request.nextUrl.pathname;
-  //
+
   // const authResponse = await auth0.middleware(request);
   //
   // // if path starts with /auth, let the auth middleware handle it
   // if (request.nextUrl.pathname.startsWith('/auth')) {
   //   return authResponse;
   // }
+  // const session = await auth0.getSession(request as any);
+  // console.log({ session });
 
   const isProtectedRoute = protectedRoutes.some((route) => path.startsWith(route));
   const isPublicRoute = publicRoutes.includes(path);
-
-  // const session = await auth0.getSession(request as any);
-  // console.log({ session });
 
   const tokenJwt = (await cookies()).get('wReflect')?.value || '';
 

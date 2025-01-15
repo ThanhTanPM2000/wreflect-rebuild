@@ -6,7 +6,7 @@ import { useMutation } from '@apollo/client';
 import auth0, { AuthOptions } from 'auth0-js';
 import { useTranslations } from 'next-intl';
 import { Button } from '@mantine/core';
-import { login } from '@/lib/apollo-client/mutations/AuthMutations';
+import { login } from '@/lib/graphql/mutations/AuthMutations';
 
 type Props = {};
 const authConfig: AuthOptions = {

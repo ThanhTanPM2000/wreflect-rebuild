@@ -10,7 +10,7 @@ import {
   getTeamsOfUser,
   getTeamsOfUserResult,
   getTeamsOfUserVars,
-} from '@/lib/apollo-client/queries/TeamQueries';
+} from '@/lib/graphql/queries/TeamQueries';
 import {
   getValidPageParams,
   getValidSizeParams,
@@ -45,6 +45,18 @@ const TeamsPage = (props: Props) => {
   const teams = data?.getTeamsOfUser?.data || [];
   const total = data?.getTeamsOfUser.total || null;
 
+  console.log({ teams });
+
+  const handleRefetchTeams = () => {
+    refetch({
+      isGettingAll: false,
+      search: searchParams.get('search') || '',
+      page: getValidPageParams(searchParams.get('page')),
+      size: getValidSizeParams(searchParams.get('size')),
+      status: getValidTeamStatusParams(searchParams.get('status')),
+    });
+  };
+
   return (
     <div className=" flex flex-col min-w-fit bg-white p-3 shadow-2xl rounded-xl min-h-full ">
       <div className="flex min-w-fit gap-6 justify-between p-3">
@@ -53,17 +65,7 @@ const TeamsPage = (props: Props) => {
           <MyPagination total={total || 0} />
           <TeamsFilter />
           <SearchBar />
-          <CreateTeamButton
-            onRefetch={() =>
-              refetch({
-                isGettingAll: false,
-                search: searchParams.get('search') || '',
-                page: getValidPageParams(searchParams.get('page')),
-                size: getValidSizeParams(searchParams.get('size')),
-                status: getValidTeamStatusParams(searchParams.get('status')),
-              })
-            }
-          />
+          <CreateTeamButton onRefetch={handleRefetchTeams} />
         </div>
       </div>
       <Divider />

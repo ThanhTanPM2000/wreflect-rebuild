@@ -15,4 +15,22 @@ const testConnection = async () => {
 
 testConnection();
 
+prisma.$use(async (params, next) => {
+  if (params.model === 'Member') {
+    // Automatically include `user` data for findMany queries
+    if (!params.args.include) {
+      params.args.include = {};
+    }
+    params.args.include.user = {
+      select: {
+        email: true,
+        nickname: true,
+        picture: true,
+        userStatus: true,
+      },
+    };
+  }
+  return next(params);
+});
+
 export default prisma;

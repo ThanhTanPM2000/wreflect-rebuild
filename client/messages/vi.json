@@ -7,6 +7,7 @@
     "signout": "Đăng xuất"
   },
   "common": {
+    "days": "Ngày",
     "search_text": "Tìm kiếm ở đây",
     "search_label": "Tìm kiếm",
     "collapse": "Thu gọn",
@@ -106,7 +107,11 @@
   },
   "teams": {
     "new": "Nhóm mới",
-    "reflect": "Nhóm phản ánh",
+    "teamReflection": "Đánh giá nhóm",
+    "selfReflection": "Đánh giá bản thân",
+    "actionTracker": "Hành động theo dõi",
+    "healthCheck": "Kiểm tra sức khỏe",
+    "boards": "Các bảng",
     "members": "Thành viên",
     "settings": "Cài đặt",
     "details": {

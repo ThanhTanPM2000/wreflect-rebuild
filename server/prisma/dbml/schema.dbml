@@ -87,12 +87,39 @@ Table Team {
   picture String [not null]
   isPublic Boolean [not null, default: true]
   description String
+  defaultBoardId String [unique]
+  defaultBoard Board
   status TeamStatus [not null, default: 'DOING']
   members Member [not null]
   boards Board [not null]
   healthChecks HealthCheck [not null]
   teamTemplate HealthCheckTemplate [not null]
   assessments Assessment [not null]
+}
+
+Table Board {
+  id String [pk]
+  teamId String [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  createdBy String [not null]
+  isPublic Boolean [not null, default: true]
+  isLocked Boolean [not null, default: false]
+  currentColumnId String
+  disableDownVote Boolean [not null, default: false]
+  disableUpVote Boolean [not null, default: false]
+  isAnonymous Boolean [not null, default: false]
+  votesLimit Int [not null, default: 25]
+  meetingNote String [not null, default: 'My meeting note...']
+  title String [not null]
+  timerInProgress Boolean [not null, default: false]
+  type BoardType [not null, default: 'PHASE']
+  currentPhase PhaseType [not null, default: 'REFLECT']
+  endTime DateTime
+  team Team [not null]
+  teamDefault Team
+  columns Column [not null]
+  healthCheck HealthCheck
 }
 
 Table HealthCheckTemplate {
@@ -119,30 +146,6 @@ Table TemplateQuestion {
   indexes {
     (title, templateId) [unique]
   }
-}
-
-Table Board {
-  id String [pk]
-  teamId String [not null]
-  createdAt DateTime [default: `now()`, not null]
-  updatedAt DateTime [not null]
-  createdBy String [not null]
-  isPublic Boolean [not null, default: true]
-  isLocked Boolean [not null, default: false]
-  currentColumnId String
-  disableDownVote Boolean [not null, default: false]
-  disableUpVote Boolean [not null, default: false]
-  isAnonymous Boolean [not null, default: false]
-  votesLimit Int [not null, default: 25]
-  meetingNote String [not null, default: 'My meeting note...']
-  title String [not null]
-  timerInProgress Boolean [not null, default: false]
-  type BoardType [not null, default: 'PHASE']
-  currentPhase PhaseType [not null, default: 'REFLECT']
-  endTime DateTime
-  team Team [not null]
-  columns Column [not null]
-  healthCheck HealthCheck
 }
 
 Table HealthCheck {
@@ -383,11 +386,13 @@ Ref: AnswerOnCriteria.criteriaId > Criteria.id [delete: Cascade]
 
 Ref: AnswerOnCriteria.resultId > Result.id [delete: Cascade]
 
+Ref: Team.defaultBoardId - Board.id
+
+Ref: Board.teamId - Team.id [delete: Cascade]
+
 Ref: HealthCheckTemplate.teamId > Team.id [delete: Cascade]
 
 Ref: TemplateQuestion.templateId > HealthCheckTemplate.id [delete: Cascade]
-
-Ref: Board.teamId > Team.id [delete: Cascade]
 
 Ref: HealthCheck.boardId - Board.id [delete: Cascade]
 

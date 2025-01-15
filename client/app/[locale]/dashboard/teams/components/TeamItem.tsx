@@ -1,7 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { Badge, Button, Card, Group, Popover, Text } from '@mantine/core';
+import { HiCog, HiOutlineLogin, HiUserGroup } from 'react-icons/hi';
+import { ActionIcon, Badge, Button, Card, Group, Popover, Text } from '@mantine/core';
+import { Link } from '@/i18n/routing';
 import { Team } from '@/types';
 
 type Props = {
@@ -16,6 +18,7 @@ const TeamItem = ({ team }: Props) => {
       <Card.Section className="aspect-video">
         <Image
           src={team.picture}
+          priority
           height={400}
           width={400}
           className="h-full w-auto object-cover"
@@ -28,13 +31,36 @@ const TeamItem = ({ team }: Props) => {
         <Badge color="pink">{team.status === 'DONE' ? t('common.done') : t('common.doing')}</Badge>
       </Group>
 
-      <Text className="flex-grow" size="sm" c="dimmed">
+      <Text className="flex-grow text-center !mb-2" size="sm" c="dimmed">
         {team.description}
       </Text>
 
-      <Button fullWidth mt="md" radius="md">
-        Go into team
-      </Button>
+      <div className="flex items-center justify-around gap-3">
+        <Button
+          component={Link}
+          href={`teams/${team.id}/team-reflection`}
+          className="!flex-1 min-w-fit"
+          leftSection={<HiOutlineLogin />}
+        >
+          {t('teams.teamReflection')}
+        </Button>
+        <Button
+          component={Link}
+          href={`teams/${team.id}/members`}
+          className="!flex-1 min-w-fit"
+          leftSection={<HiUserGroup />}
+        >
+          {t('teams.members')}
+        </Button>
+        <Button
+          component={Link}
+          href={`${team.id}/setting`}
+          className="!flex-1 min-w-fit"
+          leftSection={<HiCog />}
+        >
+          {t('teams.settings')}
+        </Button>
+      </div>
     </Card>
   );
 };

@@ -7,7 +7,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from '@mantine/core';
 import { routing } from '@/i18n/routing';
-import { ApolloWrapper } from '@/lib/apollo-client/apollo-wrapper';
+import { ApolloWrapper } from '@/lib/graphql/apollo-wrapper';
 import { theme } from '@/theme';
 
 import '@/app/global.css';

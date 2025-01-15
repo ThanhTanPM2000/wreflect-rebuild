@@ -31,11 +31,23 @@ const SearchBar = (props: Props) => {
     }
   };
 
+  const handleClearSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.currentTarget.value;
+    if (value === '') {
+      const currentSearchParams = getCurrentUrlParams(searchParams);
+      currentSearchParams.delete('search');
+      router.push(`${pathname}?${currentSearchParams.toString()}`, {
+        scroll: false,
+      });
+    }
+  };
+
   return (
     <>
       <Input
         ref={ref}
         defaultValue={searchText}
+        onChange={handleClearSearch}
         className="min-w-fit"
         placeholder={t('common.search_text')}
         onKeyDown={handleKeyDown}

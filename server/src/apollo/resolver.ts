@@ -663,6 +663,13 @@ const resolvers = {
       ),
     },
   },
+  // Team: {
+  //   boards: async (_, args, { req }: { req: RequestWithUserInfo }) => {
+  //     console.log({hi: _})
+  //     const boards = await board.getBoards(_.id);
+  //     return boards;
+  //   }
+  // },
 
   User: {
     members: async (_) => {

@@ -11,6 +11,7 @@ export type Team = {
   endDate: Date;
   picture: string;
   isPublic: boolean;
+  defaultBoardId: string;
   description: string | null;
   status: TeamStatus;
   members: Member[];

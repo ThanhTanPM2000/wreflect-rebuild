@@ -1,11 +1,10 @@
+import { gql } from '@apollo/client';
+import { Board } from '@/types';
+import { BOARD_FIELDS } from '../fragments/boardFragment';
+import { COLUMN_FIELDS } from './../fragments/columnFragment';
+import { OPINION_FIELDS } from './../fragments/opinionFragments';
 import { REMARK_FIELDS } from './../fragments/remarkFragment';
 import { USER_FIELDS } from './../fragments/userFragment';
-import { OPINION_FIELDS } from './../fragments/opinionFragments';
-import { COLUMN_FIELDS } from './../fragments/columnFragment';
-import { Board } from '@/types';
-import { gql } from '@apollo/client';
-
-import { BOARD_FIELDS } from '../fragments/boardFragment';
 
 export type getBoardsResult = {
   boards: Board[];
