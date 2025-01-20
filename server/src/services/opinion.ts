@@ -12,7 +12,7 @@ import {
 } from '../apollo/TypeDefs/opinionTypeDefs';
 import { RequestWithUserInfo } from '../types';
 import error from '../errorsManagement';
-import { member, user } from '.';
+import { Prisma } from '.prisma/client';
 
 export const getListOpinions = (columnId: string) => {
   const opinions = prisma.opinion.findMany({
@@ -37,78 +37,127 @@ export const getOpinion = async (opinionId: string) => {
 };
 
 export const createOpinion = async (meId: string, args: createOpinionType) => {
-  const memberOfTeam = await checkIsMemberOfTeam(args.teamId, meId);
-  await allowUpdatingBoard(memberOfTeam, args.boardId);
-
-  const max = await prisma.opinion.aggregate({
-    where: {
-      columnId: args.columnId,
-    },
-    _max: {
-      position: true,
-    },
-  });
-
-  const updatePositionOpinion = args.isCreateBottom
-    ? undefined
-    : {
-        updateMany: {
-          where: {
-            position: {
-              gte: 0,
+  try {
+    return await prisma.$transaction(
+      async (prisma) => {
+        let newOrder: number;
+        if (args.isCreateBottom) {
+          const maxOrder = await prisma.opinion.aggregate({
+            where: {
+              columnId: args.columnId,
             },
-          },
-          data: {
-            position: {
-              increment: 1,
+            _max: {
+              position: true,
             },
-          },
-        },
-      };
+          });
 
-  const column = await prisma.column.update({
-    where: {
-      id: args.columnId,
-    },
-    data: {
-      opinions: {
-        ...updatePositionOpinion,
-        create: {
-          text: args.text,
-          isAction: args.isAction,
-          authorId: memberOfTeam.id,
-          updatedBy: memberOfTeam.id,
-          position:
-            (max?._max?.position || max?._max?.position == 0) && args.isCreateBottom ? max._max.position + 1 : 0,
-        },
-      },
-    },
-    include: {
-      opinions: {
-        include: {
-          remarks: {
-            include: {
-              author: {
-                include: { user: true },
+          newOrder = maxOrder._max.position !== null ? maxOrder._max.position + 1 : 0;
+        } else {
+          newOrder = 0;
+          await prisma.opinion.updateMany({
+            where: {
+              columnId: args.columnId,
+            },
+            data: {
+              position: {
+                increment: 1,
               },
             },
-            orderBy: {
-              createdAt: 'asc',
-            },
-          },
-          author: {
-            include: { user: true },
-          },
-        },
-        orderBy: {
-          position: 'asc',
-        },
-      },
-    },
-  });
+          });
+        }
 
-  if (!column) return error.Forbidden();
-  return column;
+        return await prisma.opinion.create({
+          data: {
+            text: args.text,
+            isAction: args.isAction,
+            columnId: args.columnId,
+            authorId: args.memberId,
+            updatedBy: meId,
+            position: newOrder,
+          },
+        });
+      },
+      {
+        timeout: 30000,
+        isolationLevel: Prisma.TransactionIsolationLevel.Serializable,
+      },
+    );
+  } catch (error) {
+    console.log({ error });
+  }
+
+  // const memberOfTeam = await checkIsMemberOfTeam(args.teamId, meId);
+  // await allowUpdatingBoard(memberOfTeam, args.boardId);
+
+  // const max = await prisma.opinion.aggregate({
+  //   where: {
+  //     columnId: args.columnId,
+  //   },
+  //   _max: {
+  //     position: true,
+  //   },
+  // });
+
+  // const updatePositionOpinion = args.isCreateBottom
+  //   ? undefined
+  //   : {
+  //       updateMany: {
+  //         where: {
+  //           position: {
+  //             gte: 0,
+  //           },
+  //         },
+  //         data: {
+  //           position: {
+  //             increment: 1,
+  //           },
+  //         },
+  //       },
+  //     };
+
+  // const column = await prisma.column.update({
+  //   where: {
+  //     id: args.columnId,
+  //   },
+  //   data: {
+  //     opinions: {
+  //       ...updatePositionOpinion,
+  //       create: {
+  //         text: args.text,
+  //         isAction: args.isAction,
+  //         authorId: memberOfTeam.id,
+  //         updatedBy: memberOfTeam.id,
+  //         position:
+  //           (max?._max?.position || max?._max?.position == 0) && args.isCreateBottom ? max._max.position + 1 : 0,
+  //       },
+  //     },
+  //   },
+  //   include: {
+  //     opinions: {
+  //       include: {
+  //         remarks: {
+  //           include: {
+  //             author: {
+  //               include: { user: true },
+  //             },
+  //           },
+  //           orderBy: {
+  //             createdAt: 'asc',
+  //           },
+  //         },
+  //         author: {
+  //           include: { user: true },
+  //         },
+  //       },
+  //       orderBy: {
+  //         position: 'asc',
+  //       },
+  //     },
+  //   },
+  // });
+
+  // if (!column) return error.Forbidden();
+  // return column;
 };
 
 export const convertToAction = async (meId: string, args: convertToActionType) => {

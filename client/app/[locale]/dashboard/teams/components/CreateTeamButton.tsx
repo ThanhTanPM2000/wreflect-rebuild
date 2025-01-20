@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
+import { IconCirclePlus } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
-import { HiOutlinePlusCircle } from 'react-icons/hi';
 import { Button } from '@mantine/core';
 import NewTeamModal from './NewTeamModal';
 
@@ -24,7 +24,7 @@ const CreateTeamButton = ({ onRefetch }: Props) => {
       <Button
         className="!min-w-fit"
         onClick={handleClick}
-        leftSection={<HiOutlinePlusCircle size={20} />}
+        leftSection={<IconCirclePlus size={20} />}
       >
         {t('teams.new')}
       </Button>

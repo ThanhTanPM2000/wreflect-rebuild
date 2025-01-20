@@ -1,16 +1,17 @@
 'use client';
 
-import React, { use } from 'react';
+import React from 'react';
 import { add } from 'date-fns';
+import { AvatarGroup } from '@mantine/core';
+import { GetTeamQuery, MemberAvatarFragmentFragment } from '@/__generated__/generated-hooks';
 import Countdown from '@/components/CountDownTimer';
-import { Team } from '@/types';
 import ActionMenu from './ActionMenu';
 import BoardSelect from './BoardSelect';
-import ParticipantsDisplay from './ParticipantsDisplay';
+import { MemberAvatar } from './MemberAvatar';
 import StepController from './TeamStepper';
 
 type Props = {
-  team?: Team;
+  team?: GetTeamQuery['team'];
 };
 
 const StageController = ({ team }: Props) => {
@@ -22,9 +23,16 @@ const StageController = ({ team }: Props) => {
           <BoardSelect />
         </div>
         <div className="absolute z-0 w-full flex justify-center">
-          {team?.members && team?.members?.length >= 0 && (
-            <ParticipantsDisplay participants={team.members} />
-          )}
+          <AvatarGroup>
+            {team?.members?.map(
+              (member) =>
+                member &&
+                member.user &&
+                member.user?.picture && (
+                  <MemberAvatar size={40} picture={member?.user?.picture} key={member.id} />
+                )
+            )}
+          </AvatarGroup>
         </div>
         <ActionMenu />
       </div>

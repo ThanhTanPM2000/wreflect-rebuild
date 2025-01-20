@@ -39,6 +39,8 @@ export default async function middleware(request: NextRequest) {
       // await = getClient().query()
       console.log('');
     }
+    const headers = new Headers(request.headers);
+    headers.set('x-user-id', `123`);
   } catch (error) {
     if (isProtectedRoute) {
       const loginUrl = new URL('/', request.url);

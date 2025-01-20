@@ -3,9 +3,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
+import { IconBellRingingFilled, IconBrandTeams, IconUserCircle } from '@tabler/icons-react';
 import { useLocale, useTranslations } from 'next-intl';
-import { HiBell, HiOutlineLogout, HiUser, HiUserGroup } from 'react-icons/hi';
-import { Avatar, Burger, Button } from '@mantine/core';
 import ChangeLanguageButton from './ChangeLanguageButton';
 import CollapseButton from './CollapseButton';
 import LogoutButton from './LogoutButton';
@@ -47,19 +46,19 @@ const Sidebar = (props: Props) => {
           <ul>
             <SidebarItem
               href={`/dashboard/teams`}
-              icon={HiUserGroup}
+              icon={IconBrandTeams}
               label={t('sidebar.teams')}
               isOpen={isCollapse}
             />
             <SidebarItem
               href={`/dashboard/notifications`}
-              icon={HiBell}
+              icon={IconBellRingingFilled}
               label={t('sidebar.notifications')}
               isOpen={isCollapse}
             />
             <SidebarItem
               href={`/dashboard/account`}
-              icon={HiUser}
+              icon={IconUserCircle}
               label={t('sidebar.account')}
               isOpen={isCollapse}
             />

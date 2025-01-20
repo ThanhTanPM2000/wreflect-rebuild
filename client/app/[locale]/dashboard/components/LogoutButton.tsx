@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { useApolloClient } from '@apollo/client';
+import { IconLogout2 } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
-import { HiOutlineLogout } from 'react-icons/hi';
 import { ActionIcon, Avatar, Button } from '@mantine/core';
 import { clearCookie } from '../actions';
 
@@ -23,15 +23,20 @@ const LogoutButton = ({ isCollapse }: Props) => {
   return (
     <>
       {isCollapse ? (
-        <Button className="h-11" onClick={handleLogout} color="black" fullWidth>
+        <Button className="h-11" onClick={handleLogout} color="black" variant="outline" fullWidth>
           <Avatar color="cyan" radius="xl">
             MK
           </Avatar>
           {t('common.authentication.logout')}
         </Button>
       ) : (
-        <ActionIcon className="h-11 !w-full" onClick={handleLogout} color="black">
-          <HiOutlineLogout />
+        <ActionIcon
+          className="h-11 !w-full"
+          onClick={handleLogout}
+          color="black"
+          variant="transparent"
+        >
+          <IconLogout2 />
         </ActionIcon>
       )}
     </>

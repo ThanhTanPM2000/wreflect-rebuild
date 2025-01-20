@@ -121,7 +121,6 @@ async function startApolloServer(typeDefs, resolvers) {
     cors: {
       origin: [
         config.CLIENT_URL,
-        'https://wreflect.southeastasia.cloudapp.azure.com',
         'https://wreflect.duckdns.org',
         'http://4.193.194.60:4000',
         'http://4.193.194.60:3000',

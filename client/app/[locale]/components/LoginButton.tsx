@@ -40,7 +40,7 @@ const LoginButton = (props: Props) => {
   };
 
   return (
-    <Button loading={loading} onClick={handleClickLogin}>
+    <Button loading={loading || (!!code && !!state)} onClick={handleClickLogin}>
       {t('common.authentication.login')}
     </Button>
   );

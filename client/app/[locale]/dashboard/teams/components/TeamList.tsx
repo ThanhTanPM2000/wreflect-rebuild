@@ -1,20 +1,17 @@
 import React from 'react';
+import { FragmentType } from '@apollo/client';
 import { Grid } from '@mantine/core';
-import { Team } from '@/types';
+import { TeamDetailFragmentFragment } from '@/__generated__/generated-hooks';
 import TeamItem from './TeamItem';
 
 type Props = {
-  teams: Team[];
+  teams: Array<TeamDetailFragmentFragment>;
 };
 
 const TeamList = ({ teams }: Props) => {
   return (
     <Grid gutter={{ base: 5, xs: 'md', md: 'xl', xl: 50 }}>
-      {teams.map((team) => (
-        <Grid.Col className="min-w-fit" span={2} key={team.id}>
-          <TeamItem team={team} />
-        </Grid.Col>
-      ))}
+      {teams.map((team) => team && <TeamItem team={team} key={team.id} />)}
     </Grid>
   );
 };

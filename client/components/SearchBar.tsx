@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { IconSearch } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
-import { HiOutlineSearch } from 'react-icons/hi';
 import { Button, Input } from '@mantine/core';
 import { getCurrentUrlParams, getValidSearchParam } from '@/utils/validateParams';
 
@@ -51,7 +51,7 @@ const SearchBar = (props: Props) => {
         className="min-w-fit"
         placeholder={t('common.search_text')}
         onKeyDown={handleKeyDown}
-        leftSection={<HiOutlineSearch />}
+        leftSection={<IconSearch />}
       />
       <Button onClick={handleSearch} className="!min-w-fit">
         {t('common.search_label')}

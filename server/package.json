@@ -23,7 +23,7 @@
     "@aws-sdk/s3-request-presigner": "^3.726.0",
     "@graphql-tools/schema": "^8.3.0",
     "@graphql-tools/utils": "^8.5.1",
-    "@prisma/client": "3.10.0",
+    "@prisma/client": "^6.2.1",
     "apollo-server-errors": "^3.3.0",
     "apollo-server-express": "^3.5.0",
     "auth0-js": "^9.18.0",
@@ -88,7 +88,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^8.3.0",
     "nodemon": "^2.0.15",
-    "prisma": "3.10.0",
+    "prisma": "^6.2.1",
     "prisma-dbml-generator": "0.9.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.3"

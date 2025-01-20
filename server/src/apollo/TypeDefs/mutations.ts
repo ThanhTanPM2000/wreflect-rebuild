@@ -211,13 +211,12 @@ const typeDefs = gql`
     emptyColumn(teamId: String!, boardId: String!, columnId: String): Column
 
     createOpinion(
-      teamId: String!
-      boardId: String!
       columnId: String!
+      memberId: String!
       text: String
       isAction: Boolean
       isCreateBottom: Boolean
-    ): Column
+    ): Opinion
     updateOpinion(
       teamId: String!
       opinionId: String!

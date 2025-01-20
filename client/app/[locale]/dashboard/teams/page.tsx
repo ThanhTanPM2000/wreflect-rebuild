@@ -2,15 +2,14 @@
 
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useQuery } from '@apollo/client';
+import { gql } from '@apollo/client';
 import { useTranslations } from 'next-intl';
-import { Divider, Pagination, Select } from '@mantine/core';
-import SearchBar from '@/components/SearchBar';
+import { Divider } from '@mantine/core';
 import {
-  getTeamsOfUser,
-  getTeamsOfUserResult,
-  getTeamsOfUserVars,
-} from '@/lib/graphql/queries/TeamQueries';
+  TeamDetailFragmentFragment,
+  useGetTeamsOfUserQuery,
+} from '@/__generated__/generated-hooks';
+import SearchBar from '@/components/SearchBar';
 import {
   getValidPageParams,
   getValidSizeParams,
@@ -20,18 +19,41 @@ import MyPagination from '../../../../components/MyPagination';
 import TeamsBreadcrumbs from './components/Breadcrumbs';
 import CreateTeamButton from './components/CreateTeamButton';
 import TeamsFilter from './components/TeamFilter';
+import { TEAM_DETAIL_FRAGMENT } from './components/TeamItem';
 import TeamList from './components/TeamList';
 
 type Props = {};
+
+const teamsQueryDocument = gql`
+  query getTeamsOfUser(
+    $isGettingAll: Boolean
+    $search: String
+    $page: Int
+    $size: Int
+    $status: String
+  ) {
+    getTeamsOfUser(
+      isGettingAll: $isGettingAll
+      search: $search
+      page: $page
+      size: $size
+      status: $status
+    ) {
+      data {
+        id
+        ...TeamDetailFragment
+      }
+      total
+    }
+  }
+  ${TEAM_DETAIL_FRAGMENT}
+`;
 
 const TeamsPage = (props: Props) => {
   const t = useTranslations();
   const searchParams = useSearchParams();
 
-  const { error, data, loading, refetch, networkStatus } = useQuery<
-    getTeamsOfUserResult,
-    getTeamsOfUserVars
-  >(getTeamsOfUser, {
+  const { error, data, loading, refetch, networkStatus } = useGetTeamsOfUserQuery({
     variables: {
       isGettingAll: false,
       search: searchParams.get('search') || '',
@@ -42,10 +64,10 @@ const TeamsPage = (props: Props) => {
     notifyOnNetworkStatusChange: true,
   });
 
-  const teams = data?.getTeamsOfUser?.data || [];
-  const total = data?.getTeamsOfUser.total || null;
+  if (!data?.getTeamsOfUser) return '';
 
-  console.log({ teams });
+  const teams = (data?.getTeamsOfUser?.data || []) as Array<TeamDetailFragmentFragment>;
+  const total = data?.getTeamsOfUser.total || null;
 
   const handleRefetchTeams = () => {
     refetch({
@@ -70,7 +92,7 @@ const TeamsPage = (props: Props) => {
       </div>
       <Divider />
       <div className="my-3 flex flex-grow flex-col justify-between gap-3">
-        <TeamList teams={teams} />
+        {teams && teams?.length > 0 && <TeamList teams={teams} />}
       </div>
     </div>
   );

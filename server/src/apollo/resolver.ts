@@ -200,7 +200,7 @@ const resolvers = {
       const mySession = await session.createSession(myUser.id, config.SESSION_DURATION_MINUTES);
 
       const oneDayInMilliseconds = config.SESSION_DURATION_MINUTES * 60 * 1000;
-      const token = jwt.sign({ email: data.email, token: mySession.token }, 'wReflect', {
+      const token = jwt.sign({ email: myUser.email, userId: myUser.id, token: mySession.token }, 'wReflect', {
         expiresIn: oneDayInMilliseconds,
       });
       setCookie('wReflect', token, oneDayInMilliseconds, res);
@@ -412,13 +412,13 @@ const resolvers = {
     createOpinion: async (_, args: createOpinionType, { req }: { req: RequestWithUserInfo }) => {
       const { id: meId } = req?.user;
 
-      const columnContaintCreatingOpinion = await opinion.createOpinion(meId, args);
+      const newOpinion = await opinion.createOpinion(meId, args);
 
-      pubsub.publish('CREATE_OPINION', {
-        subOnUpdateColumn: columnContaintCreatingOpinion,
-        teamId: args.teamId,
-      });
-      return columnContaintCreatingOpinion;
+      // pubsub.publish('CREATE_OPINION', {
+      //   subOnUpdateColumn: columnContaintCreatingOpinion,
+      //   teamId: args.teamId,
+      // });
+      return newOpinion;
     },
 
     convertOpinion: async (_, args: convertToActionType, { req }: { req: RequestWithUserInfo }) => {

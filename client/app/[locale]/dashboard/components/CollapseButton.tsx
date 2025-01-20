@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import { IconLayoutSidebarLeftExpandFilled } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
-import { HiMenu } from 'react-icons/hi';
 import { ActionIcon, Button } from '@mantine/core';
 import { usePathname } from '@/i18n/routing';
 
@@ -25,12 +25,23 @@ const CollapseButton = ({ isCollapse, onCollapse }: Props) => {
   return (
     <>
       {isCollapse ? (
-        <Button className="h-11" onClick={handleToggleCollapse} color="gray" fullWidth>
+        <Button
+          color="black"
+          className="h-11"
+          onClick={handleToggleCollapse}
+          variant="outline"
+          fullWidth
+        >
           {t('common.collapse')}
         </Button>
       ) : (
-        <ActionIcon className="h-11 !w-full" onClick={handleToggleCollapse} color="gray">
-          <HiMenu />
+        <ActionIcon
+          color="black"
+          className="h-11 !w-full"
+          onClick={handleToggleCollapse}
+          variant="outline"
+        >
+          <IconLayoutSidebarLeftExpandFilled />
         </ActionIcon>
       )}
     </>

@@ -33,8 +33,7 @@ const typeDefs = gql`
 `;
 
 export type createOpinionType = {
-  teamId: string;
-  boardId: string;
+  memberId: string;
   columnId: string;
   text: string;
   isAction: boolean;

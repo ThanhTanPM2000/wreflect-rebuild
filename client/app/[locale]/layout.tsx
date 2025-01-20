@@ -1,4 +1,5 @@
 import '@mantine/core/styles.css';
+import '@mantine/tiptap/styles.css';
 
 import React from 'react';
 import { Baloo_Bhai_2 } from 'next/font/google';
